@@ -2,7 +2,7 @@
   "name": "hospital-renacer.github.io-main",
   "version": "1.0.0",
   "description": "El proyecto consiste en desarrollar una aplicación web que permita el control de un sistema de citas medicas, mostrar información de pacientes, doctores y citas médicas",
-  "main": "app.js",
+  "main": "app.mjs",
   "type": "module",
   "dependencies": {
     "abbrev": "^1.1.1",
@@ -380,7 +380,7 @@
     "yocto-queue": "^0.1.0"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.mjs"
   },
   "keywords": [],
   "author": "",
