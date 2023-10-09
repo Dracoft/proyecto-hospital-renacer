@@ -379,6 +379,10 @@
     "yallist": "^2.1.2",
     "yocto-queue": "^0.1.0"
   },
+  "devDependencies": {
+    "handlebars": "^4.5.0",
+    "nodemon": "^1.19.4"
+  },
   "scripts": {
     "start": "node app.js"
   },
