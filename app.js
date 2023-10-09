@@ -1,4 +1,4 @@
-import createError from 'http-errors';
+var createError = require('http-errors');
 var express = require('express');
 const session = require('express-session');
 var path = require('path');
