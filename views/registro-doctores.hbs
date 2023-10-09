@@ -1,0 +1,19 @@
+<h2>REGISTRO DE DOCTORES</h2>
+<label for="nombre_doctor">Nombres:<span> *</span></label>
+<input type="text" id="nombre_doctor" name="nombre_doctor" required><br>
+<label for="apellido_doctor">Apellidos:<span> *</span></label>
+<input type="text" id="apellido_doctor" name="apellido_doctor" required><br>
+<label for="cedula">Cedulaaaaaaaaaaaaaaaaa:<span> *</span></label>
+<input type="text" id="cedula_doctor" name="cedula_doctor" required><br>
+<label for="consultorio">Consultorio:<span> *</span></label>
+<input type="text" id="consultorio" name="consultorio" required><br>
+<label for="correo">Correo Electronico:<span> *</span></label>
+<input type="email" id="correo_doctor" name="correo_doctor" required><br>aa
+<label for="especialidad">Especialidad requerida:<span> *</span></label>
+<select id="especialidad" name="especialidad" required>
+    <option value="">------------------------ Seleccione la especialidad ---------------------</option>
+    {{#each especialidades}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select><br>
+<a class="volver" href="/doctores">Volver</a>

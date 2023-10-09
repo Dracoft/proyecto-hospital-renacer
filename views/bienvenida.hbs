@@ -1,0 +1,24 @@
+<header>
+    <h1>{{title}}</h1>
+</header>
+<div class="container">
+        <script>
+Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'Los datos ingresados son incorrectos. Por favor, inténtalo de nuevo.',
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Redirige al usuario a otra página
+        window.location.href = './iniciar-administrador';
+    }
+});
+    </script>
+</div>
+<footer>
+  <h2>Hospital Renacer</h2>
+  <p>Somos un hospital comprometido con la salud y bienestar de nuestros pacientes. Brindamos atención médica de calidad, tecnología avanzada y un equipo de profesionales altamente capacitados.</p>
+  <p>Estamos dedicados a ofrecer servicios médicos integrales, desde consultas médicas hasta cirugías especializadas. Nuestro objetivo es proporcionar un ambiente cálido y seguro para el cuidado de la salud de nuestra comunidad.</p>
+  <p>Confía en nosotros para tus necesidades médicas. ¡Tu bienestar es nuestra prioridad!</p>
+  <p>&copy; 2023 Hospital Renacer. Todos los derechos reservados.</p>
+</footer>

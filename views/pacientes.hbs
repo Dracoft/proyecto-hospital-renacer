@@ -1,0 +1,46 @@
+<div class="table-container">
+  <h1>Hospital Renacer</h1>
+  <h2>LISTADO DE PACIENTES</h2>
+  <div class="table-responsive">
+    <table class="tabla-pacientes">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Número de cédula</th>
+          <th>Edad</th>
+          <th>Teléfono</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each pacientes}}
+        <tr>
+          <form action="/pacientes/actualizar/{{cedula}}" method="post">
+            <td><input type="text" id="nombre_paciente" name="nombre_paciente" value="{{nombre}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="text" id="apellido_paciente" name="apellido_paciente" value="{{apellido}}" {{#ifCond
+                @key '!=' ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="text" value="{{cedula}}" disabled></td>
+            <td><input type="text" id="edad_paciente" name="edad_paciente" value="{{edad}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="tel" id="telefono_paciente" name="telefono_paciente" value="{{telefono}}" {{#ifCond
+                @key '!=' ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td>
+              {{#if ../estado}}
+              <a href="/pacientes/eliminar/{{cedula}}" class="button button-delete">Eliminar</a> <br><br>
+              <a href="/pacientes/enviar/{{@key}}" class="button button-update">Actualizar</a>
+              {{else}}
+              <input type="submit" value="Enviar" class="button button-update">
+              {{/if}}
+            </td>
+          </form>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <a href="logout" class="a-logout">Cerrar Sesión</a>
+  </div>
+</div>
+<a class="volver" href="/">Volver</a>
+<a class="agregar-paciente" href="pacientes/agregar-pacientes">Agregar Paciente</a>

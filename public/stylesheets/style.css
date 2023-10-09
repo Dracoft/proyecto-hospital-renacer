@@ -1,0 +1,321 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-color: #b81b3d69;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  border: solid 0px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eb8b8b;
+  flex-grow: 1;
+}
+
+.box {
+  border: #b700ff solid 0px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  max-width: 300px;
+  height: 300px;
+  flex-basis: 0;
+}
+
+.box-pacientes {
+  background-color: #dd3e60;
+  border-radius: 10px;
+}
+
+.box-doctor {
+  background-color: #dd3e60;
+  border-radius: 10px;
+}
+
+.box-citas {
+  background-color: #dd3e60;
+  border-radius: 10px;
+}
+
+.box p {
+  margin: 0;
+}
+
+.box img {
+  height: auto;
+  max-width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.box-pacientes .paciente-texto,
+.box-doctor .doctor-texto,
+.box-citas .citas-texto {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+header {
+  background-color: #f32f2f;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+footer {
+  background-color: #cf4949;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+footer h2 {
+  margin-bottom: 10px;
+}
+
+footer p {
+  margin-bottom: 5px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.box {
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+.box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+input[type="text"],
+input[type="tel"] {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+}
+
+.table-container {
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tabla-pacientes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tabla-pacientes th,
+.tabla-pacientes td {
+  padding: 10px;
+  text-align: center;
+}
+
+.tabla-pacientes th {
+  background-color: #333;
+  color: white;
+}
+
+.tabla-pacientes td {
+  background-color: #f5f5f5;
+  border: none;
+  font-size: 14px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.volver,
+a[href="pacientes/agregar-pacientes"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.volver:hover,
+a[href="pacientes/agregar-pacientes"]:hover {
+  background-color: #666;
+}
+
+.tabla-doctores {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tabla-doctores th,
+.tabla-doctores td {
+  padding: 10px;
+  text-align: center;
+}
+
+.tabla-doctores th {
+  background-color: #333;
+  color: white;
+}
+
+.tabla-doctores td {
+  background-color: #f5f5f5;
+  border: none;
+  font-size: 14px;
+}
+
+.volver,
+a[href="doctores/agregar-doctores"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.volver:hover,
+a[href="doctores/agregar-doctores"]:hover {
+  background-color: #666;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-delete {
+  background-color: #f32f2f;
+  color: #fff;
+}
+
+.button-update {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.button:hover {
+  background-color: #cf4949;
+}
+
+.button-update:hover {
+  background-color: #45a049;
+}
+
+.tabla-citas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tabla-citas th,
+.tabla-citas td {
+  padding: 10px;
+  text-align: center;
+}
+
+.tabla-citas th {
+  background-color: #333;
+  color: white;
+}
+
+.tabla-citas td {
+  background-color: #f5f5f5;
+  border: none;
+  font-size: 14px;
+}
+
+.volver,
+a[href="citas/agregar-cita"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.volver:hover,
+a[href="citas/agregar-cita"]:hover {
+  background-color: #666;
+}
+
+.a-logout {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f32f2f;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+/* Estilo para el botón de logout al pasar el cursor por encima */
+.a-logout:hover {
+  background-color: #cf4949;
+}
+
+h1 {
+  font-size:50px;
+  text-align: center;
+  margin: 0;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.table-container {
+  animation: fadeIn 1s ease-in-out;
+}
+

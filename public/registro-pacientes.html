@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Pacientes</title>
+    <link rel="stylesheet" href="/stylesheets/style-formulario.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Hospital Renacer</h1>
+    </header>
+    <main>
+        <form action="./agregar" method="post">
+            <h2>REGISTRO DE PACIENTES</h2>
+            <label for="nombre_paciente">Nombres:<span> *</span></label>
+            <input type="text" id="nombre_paciente" name="nombre_paciente" required><br>
+            <label for="apellido_paciente">Apellidos:<span> *</span></label>
+            <input type="text" id="apellido_paciente" name="apellido_paciente" required><br>
+            <label for="cedula_paciente">Número de cédula:<span> *</span></label>
+            <input type="text" id="cedula_paciente" name="cedula_paciente" required><br>
+            <label for="edad_paciente">Edad:<span> *</span></label>
+            <input type="number" id="edad_paciente" name="edad_paciente" required><br>
+            <label for="telefono_paciente">Telefono:<span> *</span></label>
+            <input type="tel" id="telefono_paciente" name="telefono_paciente" required><br>
+            <input type="submit" value="Enviar">
+        </form>
+        <a class="volver" href="/pacientes">Volver</a>
+    </main>
+</body>
+
+</html>

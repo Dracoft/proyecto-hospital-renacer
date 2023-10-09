@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro Hospital</title>
+    <link rel="stylesheet" href="/stylesheets/style-formulario.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Hospital Renacer</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="register-form">
+                <form action="./agregar" method="post">
+                    <label for="usuario_administrador">Usuario</label>
+                    <input type="text" name="usuario_administrador" required tabindex="1" autofocus>
+                    <label for="nombres_administrador">Nombres</label>
+                    <input type="text" name="nombres_administrador" required tabindex="2">
+                    <label for="rol_administrador">Rol</label>
+                    <select id="rol" name="rol_administrador" class="select-css" tabindex="3">
+                        <option value="admin" selected>Administrador</option>
+                    </select>
+                    <label for="pass_administrador">Contraseña</label>
+                    <input type="password" name="pass_administrador" required tabindex="4">
+                    <div class="buttons-container">
+                        <a href="/" class="btn-cancel">Cancel</a>
+                        <input type="submit" class="btn-save" value="Enviar">
+                      </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

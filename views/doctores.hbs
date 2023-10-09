@@ -1,0 +1,49 @@
+<div class="table-container">
+  <h1>Hospital Renacer</h1>
+  <h2>LISTADO DE DOCTORES</h2>
+  <div class="table-responsive">
+    <table class="tabla-doctores">
+      <thead>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Cédula</th>
+          <th>Especialidad</th>
+          <th>Consultorio</th>
+          <th>Correo</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each doctores}}
+        <tr>
+          <form action="/doctores/actualizar/{{cedula}}" method="post">
+            <td><input type="text" id="nombre_doctor" name="nombre_doctor" value="{{nombre}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="text" id="apellido_doctor" name="apellido_doctor" value="{{apellido}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="text" id="cedula" name="cedula" value="{{cedula}}" disabled></td>
+            <td><input type="text" id="especialidad" name="especialidad" value="{{especialidad}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="tel" id="consultorio" name="consultorio" value="{{consultorio}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td><input type="tel" id="correo_doctor" name="correo_doctor" value="{{correo}}" {{#ifCond @key '!='
+                ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+            <td>
+              {{#if ../estado}}
+              <a href="/doctores/eliminar/{{cedula}}" class="button button-delete">Eliminar</a> <br><br>
+              <a href="/doctores/enviar/{{@key}}" class="button button-update">Actualizar</a>
+              {{else}}
+              <input type="submit" value="Enviar" class="button button-update">
+              {{/if}}
+            </td>
+          </form>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <a href="logout" class="a-logout">Cerrar Sesión</a>
+  </div>
+</div>
+<a class="volver" href="/">Volver</a>
+<a href="doctores/agregar-doctores">Agregar Doctores</a>

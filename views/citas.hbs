@@ -1,0 +1,45 @@
+<div class="table-container">
+    <h1>Hospital Renacer</h1>
+    <h2>LISTADO DE CITAS</h2>
+    <div class="table-responsive">
+        <table class="tabla-citas">
+            <thead>
+                <tr>
+                    <th>Nombre Paciente</th>
+                    <th>Cédula Paciente</th>
+                    <th>Nombre Doctor</th>
+                    <th>Consultorio</th>
+                    <th>Especialidad</th>
+                    <th>Fecha</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each citas}}
+                <tr>
+                    <form action="/citas/actualizar/{{id}}" method="post"></form>
+                    <td><input type="text" value="{{nombre_paciente}}" disabled></td>
+                    <td><input type="text" value="{{cedula_paciente}}" disabled></td>
+                    <td><input type="text" value="{{nombre_doctor}} {{apellido_doctor}}" disabled></td>
+                    <td><input type="text" value="{{consultorio}}" disabled></td>
+                    <td><input type="text" value="{{especialidad}}" disabled></td>
+                    <td><input type="text" id="fecha" name="fecha" value="{{formatoFecha fecha}}" {{#ifCond @key '!='
+                            ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+                    <td>
+                        {{#if ../estado}}
+                        <a href="/citas/eliminar/{{id}}" class="button button-delete">Eliminar</a> <br><br>
+                        <a href="/citas/enviar/{{@key}}" class="button button-update">Actualizar</a>
+                        {{else}}
+                        <input type="submit" value="Enviar" class="button button-update">
+                        {{/if}}
+                    </td>
+                    </form>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <a href="logout" class="a-logout">Cerrar Sesión</a>
+</div>
+<a class="volver" href="/">Volver</a>
+<a href="citas/agregar-cita">Nueva cita</a>
