@@ -8,7 +8,6 @@ const moment = require('moment');
 const crypto = require('crypto');
 const exphbs = require("express-handlebars");//importacion de handelbars
 
-
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registrarseRouter = require('./routes/registrarse');
@@ -18,6 +17,8 @@ var doctoresRouter = require('./routes/doctores');
 var citasRouter = require('./routes/citas');
 
 var app = express();
+app.listen(3000)
+console.log(`El servidor esta corriendo en: http://localhost:3000`)
 
 const secret = crypto.randomBytes(32).toString('hex');
 
