@@ -79,29 +79,17 @@ header h1 {
   font-size: 24px;
 }
 
+main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
 footer {
   background-color: #cf4949;
   color: white;
   padding: 20px;
   text-align: center;
   flex-shrink: 0;
-}
-
-footer h2 {
-  margin-bottom: 10px;
-}
-
-footer p {
-  margin-bottom: 5px;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
 }
 
 @keyframes fadeIn {

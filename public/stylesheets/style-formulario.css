@@ -180,6 +180,7 @@ input[type="password"] {
 .btn-cancel,
 .btn-save {
   display: inline-block;
+  font-size: 18px;
   width: 120px; /* Ancho fijo para ambos botones */
   padding: 10px 0; /* Espaciado vertical */
   background-color: #f32f2f;

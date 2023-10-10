@@ -1,20 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesion.</title>
     <link rel="stylesheet" href="/stylesheets/style-formulario.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #b81b3d69;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
+        header {
+            background-color: #f32f2f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        main {
+            flex-grow: 1;
+            /* Asegura que el contenido ocupe el espacio disponible */
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #cf4949;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <h1>Proyecto Hospital Renacer</h1>
+        <h1>Iniciar Sesión</h1>
     </header>
     <main>
         <div class="login-container">
@@ -22,11 +58,13 @@
                 <form action="/login/auth" method="POST">
                     <div class="form-group">
                         <label for="usuario_administrador">Usuario</label>
-                        <input type="text" id="usuario_administrador" name="usuario_administrador" placeholder="Usuario" autofocus required>
+                        <input type="text" id="usuario_administrador" name="usuario_administrador" placeholder="Usuario"
+                            autofocus required>
                     </div>
                     <div class="form-group">
                         <label for="pass_administrador">Contraseña</label>
-                        <input type="password" id="pass_administrador" name="pass_administrador" placeholder="Contraseña" required>
+                        <input type="password" id="pass_administrador" name="pass_administrador"
+                            placeholder="Contraseña" required>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn-login" value="Iniciar Sesión">
@@ -39,9 +77,13 @@
 </body>
 <footer>
     <h2>Hospital Renacer</h2>
-    <p>Somos un hospital comprometido con la salud y bienestar de nuestros pacientes. Brindamos atención médica de calidad, tecnología avanzada y un equipo de profesionales altamente capacitados.</p>
-    <p>Estamos dedicados a ofrecer servicios médicos integrales, desde consultas médicas hasta cirugías especializadas. Nuestro objetivo es proporcionar un ambiente cálido y seguro para el cuidado de la salud de nuestra comunidad.</p>
+    <p>Somos un hospital comprometido con la salud y bienestar de nuestros pacientes. Brindamos atención médica de
+        calidad, tecnología avanzada y un equipo de profesionales altamente capacitados.</p>
+    <p>Estamos dedicados a ofrecer servicios médicos integrales, desde consultas médicas hasta cirugías especializadas.
+        Nuestro objetivo es proporcionar un ambiente cálido y seguro para el cuidado de la salud de nuestra comunidad.
+    </p>
     <p>Confía en nosotros para tus necesidades médicas. ¡Tu bienestar es nuestra prioridad!</p>
     <p>&copy; 2023 Hospital Renacer. Todos los derechos reservados.</p>
-  </footer>  
+</footer>
+
 </html>

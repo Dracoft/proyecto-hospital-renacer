@@ -6,13 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro H Administrador</title>
     <link rel="stylesheet" href="/stylesheets/style-formulario.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #b81b3d69;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+        
+        header {
+          background-color: #f32f2f;
+          color: white;
+          padding: 20px;
+          text-align: center;
+        }
+        
+        header h1 {
+          margin: 0;
+          font-size: 24px;
+        }
+        
+        main {
+          flex-grow: 1; /* Asegura que el contenido ocupe el espacio disponible */
+          padding: 20px;
+        }
+        
+        footer {
+          background-color: #cf4949;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          flex-shrink: 0;
+        }
+        </style>
 </head>
 <body>
     <header>
-        <h1>Hospital Renacer</h1>
+        <h1>Registrarse</h1>
     </header>
     <main>
         <div class="container">
@@ -29,8 +64,8 @@
                     <label for="pass_administrador">Contraseña</label>
                     <input type="password" name="pass_administrador" id="pass_administrador" required tabindex="4">
                     <div class="buttons-container">
-                        <a href="/" class="btn-cancel">Cancel</a>
-                        <input type="submit" class="btn-save" value="Enviar">
+                        <a href="/" class="btn-cancel">Volver</a>
+                        <input type="submit" class="btn-save" value="Registrar">
                     </div>
                 </form>
             </div>
