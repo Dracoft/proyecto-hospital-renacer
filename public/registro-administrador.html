@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro Hospital</title>
+    <title>Formulario de Registro H Administrador</title>
     <link rel="stylesheet" href="/stylesheets/style-formulario.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
@@ -16,7 +16,7 @@
     <main>
         <div class="container">
             <div class="register-form">
-                <form action="./agregar" method="post">
+                <form action="./agregar" method="post" onsubmit="return validatePassword()">
                     <label for="usuario_administrador">Usuario</label>
                     <input type="text" name="usuario_administrador" required tabindex="1" autofocus>
                     <label for="nombres_administrador">Nombres</label>
@@ -26,14 +26,31 @@
                         <option value="admin" selected>Administrador</option>
                     </select>
                     <label for="pass_administrador">Contraseña</label>
-                    <input type="password" name="pass_administrador" required tabindex="4">
+                    <input type="password" name="pass_administrador" id="pass_administrador" required tabindex="4">
                     <div class="buttons-container">
                         <a href="/" class="btn-cancel">Cancel</a>
                         <input type="submit" class="btn-save" value="Enviar">
-                      </div>
+                    </div>
                 </form>
             </div>
         </div>
     </main>
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("pass_administrador").value;
+            var regex = /^(?=.*[A-Za-z0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$/;
+            
+            if (!regex.test(password)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'La contraseña debe tener al menos 8 caracteres alfanuméricos y al menos un carácter especial (@, $, !, %, *, ?, &)'
+                });
+
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
