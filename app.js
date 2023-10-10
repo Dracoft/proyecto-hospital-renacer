@@ -11,7 +11,11 @@ const exphbs = require("express-handlebars");//importacion de handelbars
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registrarseRouter = require('./routes/registrarse');
-var bienvenidaRouter = require('./routes/bienvenida');
+var registrarsefalseRouter = require('./routes/registrarse-false');
+var registrarsetrueRouter = require('./routes/registrarse-true');
+var erroridentifypacienteRouter = require('./routes/error-identify-paciente');
+var erroridentificationRouter = require('./routes/error-identification');
+var loginfalseRouter = require('./routes/login-false');
 var pacientesRouter = require('./routes/pacientes');
 var doctoresRouter = require('./routes/doctores');
 var citasRouter = require('./routes/citas');
@@ -77,19 +81,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/registrarse', registrarseRouter);
-app.use('/bienvenida', bienvenidaRouter);
+app.use('/registrarse-false', registrarsefalseRouter);
+app.use('/registrarse-true', registrarsetrueRouter);
+app.use('/error-identify-paciente', erroridentifypacienteRouter);
+app.use('/error-identification', erroridentificationRouter);
+app.use('/login-false', loginfalseRouter);
 app.use('/pacientes', pacientesRouter);
 app.use('/doctores', doctoresRouter);
 app.use('/citas', citasRouter);
 
 app.get('/', (req, res)=> {
 	if (req.session.loggedin) {
-		res.render('/login/iniciar-administrador',{
+		res.render('login/iniciar-administrador',{
 			login: true,
 			name: req.session.name			
 		});		
 	} else {
-		res.render('/login/iniciar-administrador',{
+		res.render('login/iniciar-administrador',{
 			login:false,
 			name:'Debe iniciar sesión',			
 		});				

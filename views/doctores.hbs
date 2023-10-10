@@ -17,7 +17,7 @@
       <tbody>
         {{#each doctores}}
         <tr>
-          <form action="/doctores/actualizar/{{cedula}}" method="post">
+          <form id="doctores-form" action="/doctores/actualizar/{{cedula}}" method="post">
             <td><input type="text" id="nombre_doctor" name="nombre_doctor" value="{{nombre}}" {{#ifCond @key '!='
                 ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
             <td><input type="text" id="apellido_doctor" name="apellido_doctor" value="{{apellido}}" {{#ifCond @key '!='
@@ -31,7 +31,8 @@
                 ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
             <td>
               {{#if ../estado}}
-              <a href="/doctores/eliminar/{{cedula}}" class="button button-delete">Eliminar</a> <br><br>
+              <a href="javascript:void(0);" class="button button-delete"
+                onclick="confirmarEliminacion('{{cedula}}');">Eliminar</a> <br><br>
               <a href="/doctores/enviar/{{@key}}" class="button button-update">Actualizar</a>
               {{else}}
               <input type="submit" value="Enviar" class="button button-update">
@@ -45,5 +46,62 @@
     <a href="logout" class="a-logout">Cerrar Sesión</a>
   </div>
 </div>
+<script>
+  function confirmarEliminacion(cedula) {
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar al doctor?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirige a la página de eliminación si el usuario confirma
+        window.location.href = '/doctores/eliminar/' + cedula;
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('doctor-form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevenir el envío automático del formulario
+
+      // Validar que ningún campo esté vacío
+      const nombre = document.getElementById('nombre_doctor').value;
+      const apellido = document.getElementById('apellido_doctor').value;
+      const especialidad = document.getElementById('especialidad').value;
+      const consultorio = document.getElementById('consultorio').value;
+      const correo = document.getElementById('correo_doctor').value;
+
+      if (!nombre || !apellido || !especialidad || !consultorio || !correo) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos Vacíos',
+          text: 'Por favor, complete todos los campos antes de actualizar al doctor.',
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: '¿Desea actualizar al doctor?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Actualizar',
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit();
+        } else if (result.isDenied) {
+          window.location.href = '/doctores';
+        }
+      });
+    });
+  });
+</script>
 <a class="volver" href="/">Volver</a>
 <a href="doctores/agregar-doctores">Agregar Doctores</a>

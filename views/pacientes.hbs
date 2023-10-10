@@ -16,7 +16,7 @@
       <tbody>
         {{#each pacientes}}
         <tr>
-          <form action="/pacientes/actualizar/{{cedula}}" method="post">
+          <form id="paciente-form" action="/pacientes/actualizar/{{cedula}}" method="post">
             <td><input type="text" id="nombre_paciente" name="nombre_paciente" value="{{nombre}}" {{#ifCond @key '!='
                 ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
             <td><input type="text" id="apellido_paciente" name="apellido_paciente" value="{{apellido}}" {{#ifCond
@@ -28,7 +28,8 @@
                 @key '!=' ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
             <td>
               {{#if ../estado}}
-              <a href="/pacientes/eliminar/{{cedula}}" class="button button-delete">Eliminar</a> <br><br>
+              <a href="javascript:void(0);" class="button button-delete"
+                onclick="confirmarEliminacion('{{cedula}}');">Eliminar</a> <br><br>
               <a href="/pacientes/enviar/{{@key}}" class="button button-update">Actualizar</a>
               {{else}}
               <input type="submit" value="Enviar" class="button button-update">
@@ -42,5 +43,62 @@
     <a href="logout" class="a-logout">Cerrar Sesión</a>
   </div>
 </div>
+<script>
+  function confirmarEliminacion(cedula) {
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar al paciente?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/pacientes/eliminar/' + cedula;
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('paciente-form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevenir el envío automático del formulario
+
+      // Validar que ningún campo esté vacío
+      const nombre = document.getElementById('nombre_paciente').value;
+      const apellido = document.getElementById('apellido_paciente').value;
+      const edad = document.getElementById('edad_paciente').value;
+      const telefono = document.getElementById('telefono_paciente').value;
+
+      if (!nombre || !apellido || !edad || !telefono) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos Vacíos',
+          text: 'Por favor, complete todos los campos antes de enviar el formulario.',
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: '¿Desea actualizar al paciente {{nombre}} con cédula {{cedula}}?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Actualizar',
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit();
+        } else if (result.isDenied) {
+          window.location.href = '/pacientes';
+        }
+      });
+    });
+  });
+</script>
+
+
 <a class="volver" href="/">Volver</a>
 <a class="agregar-paciente" href="pacientes/agregar-pacientes">Agregar Paciente</a>

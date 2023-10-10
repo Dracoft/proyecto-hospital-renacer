@@ -17,22 +17,23 @@
             <tbody>
                 {{#each citas}}
                 <tr>
-                    <form action="/citas/actualizar/{{id}}" method="post"></form>
-                    <td><input type="text" value="{{nombre_paciente}}" disabled></td>
-                    <td><input type="text" value="{{cedula_paciente}}" disabled></td>
-                    <td><input type="text" value="{{nombre_doctor}} {{apellido_doctor}}" disabled></td>
-                    <td><input type="text" value="{{consultorio}}" disabled></td>
-                    <td><input type="text" value="{{especialidad}}" disabled></td>
-                    <td><input type="text" id="fecha" name="fecha" value="{{formatoFecha fecha}}" {{#ifCond @key '!='
-                            ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
-                    <td>
-                        {{#if ../estado}}
-                        <a href="/citas/eliminar/{{id}}" class="button button-delete">Eliminar</a> <br><br>
-                        <a href="/citas/enviar/{{@key}}" class="button button-update">Actualizar</a>
-                        {{else}}
-                        <input type="submit" value="Enviar" class="button button-update">
-                        {{/if}}
-                    </td>
+                    <form id="citas-form" action="/citas/actualizar/{{id}}" method="post">
+                        <td><input type="text" value="{{nombre_paciente}}" disabled></td>
+                        <td><input type="text" value="{{cedula_paciente}}" disabled></td>
+                        <td><input type="text" value="{{nombre_doctor}} {{apellido_doctor}}" disabled></td>
+                        <td><input type="text" value="{{consultorio}}" disabled></td>
+                        <td><input type="text" value="{{especialidad}}" disabled></td>
+                        <td><input type="text" id="fecha" name="fecha" value="{{formatoFecha fecha}}" {{#ifCond
+                                @key '!=' ../claveSeleccionada}}{{../opcion}}{{/ifCond}}></td>
+                        <td>
+                            {{#if ../estado}}
+                            <a href="javascript:void(0);" class="button button-delete"
+                                onclick="confirmarEliminacion('{{id}}');">Eliminar</a> <br><br>
+                            <a href="/citas/enviar/{{@key}}" class="button button-update">Actualizar</a>
+                            {{else}}
+                            <input type="submit" value="Enviar" class="button button-update">
+                            {{/if}}
+                        </td>
                     </form>
                 </tr>
                 {{/each}}
@@ -41,5 +42,58 @@
     </div>
     <a href="logout" class="a-logout">Cerrar Sesión</a>
 </div>
+<script>
+      function confirmarEliminacion(id) {
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar la cita medica?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/citas/eliminar/' + id;
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('citas-form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevenir el envío automático del formulario
+
+      // Validar que ningún campo esté vacío
+      const fecha = document.getElementById('fecha').value;
+
+      if (!fecha) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos Vacíos',
+          text: 'Por favor, complete todos los campos antes de enviar el formulario.',
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: '¿Desea actualizar la fecha de la cita medica?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Actualizar',
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit();
+        } else if (result.isDenied) {
+          window.location.href = '/citas';
+        }
+      });
+    });
+  });
+
+</script>
 <a class="volver" href="/">Volver</a>
 <a href="citas/agregar-cita">Nueva cita</a>

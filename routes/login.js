@@ -30,12 +30,13 @@ router.post('/auth', async (req, res) => {
                     res.status(500).send("Error en la consulta");
                 } else {
                     if (results.length === 0 || !(await bcrypt.compare(pass, results[0].pass))) {
-                            return res.render('./bienvenida');
+                            return res.render('./login-false');
                     } else {
                         req.session.loggedin = true; 
                         req.session.name = results[0].name;
 
-                        return res.render('./index' , { name: user });
+                        return res.render('./loggin-true' , { name: user });
+
                     }
                 }
                 res.end();

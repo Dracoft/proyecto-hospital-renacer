@@ -50,7 +50,7 @@ router.get('/enviar/:clave', requireLogin, function (req, res, next) {
     });
 });
 
-//Agregar medicos
+//Agregar docs
 router.post('/agregar', requireLogin, (req, res) => {
     const cedula_d = req.body.cedula_doctor;
     const nombre_d = req.body.nombre_doctor;
@@ -58,15 +58,33 @@ router.post('/agregar', requireLogin, (req, res) => {
     const correo_d = req.body.correo_doctor;
     const consultorio_d = req.body.consultorio;
     const especialidad_d = req.body.especialidad;
-    connection.query(`INSERT INTO doctores (cedula, nombre, apellido, especialidad, consultorio, correo) VALUES (${cedula_d},'${nombre_d}', '${apellido_d}', '${especialidad_d}', '${consultorio_d}', '${correo_d}')`, (error, result) => {
+
+    // Consultar si la cédula ya existe en la base de datos
+    connection.query(`SELECT * FROM doctores WHERE cedula = ${cedula_d}`, (error, results) => {
         if (error) {
-            console.log("Ocurrio un error en la ejecución", error)
+            console.log("Ocurrió un error en la consulta", error);
             res.status(500).send("Error en la consulta");
         } else {
-            res.redirect('/doctores');
+            // Si la consulta devuelve resultados, la cédula ya existe
+            if (results.length > 0) {
+                // Redirigir al usuario a otra página
+                res.redirect('/error-identification'); // Reemplaza '/cedula-duplicada' con la URL de la página que desees
+            } else {
+                // Si la cédula no existe, realizar la inserción en la base de datos
+                connection.query(`INSERT INTO doctores (cedula, nombre, apellido, especialidad, consultorio, correo) VALUES (${cedula_d},'${nombre_d}', '${apellido_d}', '${especialidad_d}', '${consultorio_d}', '${correo_d}')`, (error, result) => {
+                    if (error) {
+                        console.log("Ocurrió un error en la ejecución", error);
+                        res.status(500).send("Error en la consulta");
+                    } else {
+                        res.redirect('/doctores'); // Redirigir a la página de doctores después de la inserción
+                    }
+                });
+            }
         }
     });
-})
+});
+
+
 
 //eliminar medicos
 router.get('/eliminar/:cedula_doctor', requireLogin, function (req, res, next) {

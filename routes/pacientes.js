@@ -41,21 +41,35 @@ router.get('/agregar-pacientes', requireLogin, function (req, res, next) {
 
 //Agregar Pacientes
 router.post('/agregar', requireLogin, (req, res) => {
-    const cedula_p = req.body.cedula_paciente
-    const nombre_p = req.body.nombre_paciente
-    const apellido_p = req.body.apellido_paciente
-    const edad_p = req.body.edad_paciente
-    const telefono_p = req.body.telefono_paciente
-    connection.query(`INSERT INTO pacientes (cedula, nombre, apellido, edad, telefono) VALUES (${cedula_p},'${nombre_p}','${apellido_p}',${edad_p},${telefono_p});`, (error, results) => {
+    const cedula_p = req.body.cedula_paciente;
+    const nombre_p = req.body.nombre_paciente;
+    const apellido_p = req.body.apellido_paciente;
+    const edad_p = req.body.edad_paciente;
+    const telefono_p = req.body.telefono_paciente;
+
+    connection.query(`SELECT * FROM pacientes WHERE cedula = ${cedula_p}`, (error, results) => {
         if (error) {
-            console.log("Error en la consulta", error)
-            res.status(500).send("Error en la consulta")
+            console.log("Error en la consulta", error);
+            res.status(500).send("Error en la consulta");
         } else {
-            res.redirect('/pacientes')
+            // Si la consulta devuelve resultados, la cédula ya existe
+            if (results.length > 0) {
+                // Puedes redirigir al usuario a una página de error o mostrar un mensaje de error
+                res.redirect('/error-identify-paciente');
+            } else {
+                connection.query(`INSERT INTO pacientes (cedula, nombre, apellido, edad, telefono) VALUES (${cedula_p},'${nombre_p}','${apellido_p}',${edad_p},${telefono_p});`, (error, results) => {
+                    if (error) {
+                        console.log("Error en la consulta", error);
+                        res.status(500).send("Error en la consulta");
+                    } else {
+                        res.redirect('/pacientes');
+                    }
+                });
+            }
         }
     });
+});
 
-})
 //eliminar Pacientes
 router.get('/eliminar/:cedula_paciente', requireLogin, function (req, res, next) {
     const cedula_pa = req.params.cedula_paciente

@@ -88,16 +88,23 @@ router.get('/eliminar/:id', requireLogin, function (req, res, next) {
 
 
 router.post('/actualizar/:id', requireLogin, (req, res) => {
-    const fecha = req.body.fecha;
-    connection.query(`UPDATE citas_medicas SET fecha='${fecha}' WHERE id=${id}`, (error, result) => {
+    const id = req.params.id;
+    const fechaInput = req.body.fecha;
+
+    // Formatear la fecha al formato 'YYYY-MM-DD'
+    const fecha = new Date(fechaInput);
+    const formattedFecha = fecha.toISOString().split('T')[0];
+
+    connection.query(`UPDATE citas_medicas SET fecha='${formattedFecha}' WHERE id=${id}`, (error, result) => {
         if (error) {
             console.log("Ocurrió un error en la ejecución", error)
-            res.status(500).send("Error en la consultaa");
+            res.status(500).send("Error en la consulta");
         } else {
             res.redirect('/citas');
         }
     });
-})
+});
+
 
 module.exports = router;
 
